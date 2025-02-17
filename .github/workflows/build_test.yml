@@ -1,0 +1,40 @@
+name: Build and Test Win-Alias
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  build_test:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+
+      - name: Install Flit
+        run: pip install flit
+
+      - name: Install dependencies
+        run: flit install --deps=all
+
+      - name: Run basic tests
+        run: |
+          python -m win_alias guide
+          python -m win_alias get-aliases || echo "No aliases exist yet"
+
+      - name: Package the project
+        run: flit build
+
+      - name: Upload distribution artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: win-alias-dist
+          path: dist/

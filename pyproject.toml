@@ -1,21 +1,18 @@
 [project]
 name = "win-alias"
-version = "1.0.0"
-authors = ["EverythingPython"]
-license = "MIT"
+version = "1.0.1"
+authors = [{name = "EverythingPython"}]
+license = {text = "MIT"}
 readme = "README.md"
 description = "A simple CLI tool to create Windows aliases."
 requires-python = ">=3.11"
 dependencies = [
     "click>=8.0.1",
-    "certifi==2025.1.31",
     "charset-normalizer==3.4.1",
     "colorama==0.4.6",
     "docutils==0.21.2",
     "flit==3.10.1",
-    "flit-core==3.10.1",
     "idna==3.10",
-    "pip==25.0.1",
     "requests==2.32.3",
     "tomli-w==1.2.0",
     "urllib3==2.3.0"
@@ -25,5 +22,5 @@ dependencies = [
 win-alias = "win_alias:cli"
 
 [build-system]
-requires = ["flit_core<4", "colorama==0.4.6", "click==8.1.8"]
+requires = ["flit_core<4"]
 build-backend = "flit_core.buildapi"

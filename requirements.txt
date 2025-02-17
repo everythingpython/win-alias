@@ -1,0 +1,12 @@
+certifi==2025.1.31
+charset-normalizer==3.4.1
+click==8.1.8
+colorama==0.4.6
+docutils==0.21.2
+flit==3.10.1
+flit-core==3.10.1
+idna==3.10
+pip==25.0.1
+requests==2.32.3
+tomli-w==1.2.0
+urllib3==2.3.0

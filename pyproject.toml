@@ -18,6 +18,10 @@ dependencies = [
     "urllib3==2.3.0"
 ]
 
+[project.urls]
+Homepage = "https://github.com/everythingpython/win-alias"
+Issues = "https://github.com/everythingpython/win-alias/issues"
+
 [project.scripts]
 win-alias = "win_alias:cli"
 

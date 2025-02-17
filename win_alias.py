@@ -15,13 +15,30 @@ def cli():
 # Command to create alias
 @cli.command()
 @click.option('--alias_name', prompt='Enter the alias name')
-@click.option('--command', prompt='Enter the command')
-def create_alias(_alias_name, _command):
-    with open(f'{os.path.join(alias_dir, _alias_name)}.bat', 'w') as f:
-        f.write(f'@echo off\n{_command}')
-    print(f'{Fore.GREEN}Alias created successfully{Style.RESET_ALL}')
-    print(Fore.GREEN + "If this is your first time creating an alias,"
-                       " add the folder to your PATH environment variable.")
+def create_alias(alias_name):
+    """Create a batch alias that supports multiline commands."""
+
+    print("Enter the command (press Enter for a new line, type 'EOF' on a new line to finish):")
+
+    # Read multiline input until the user types "EOF"
+    lines = []
+    while True:
+        line = input()
+        if line.strip().upper() == "EOF":
+            break
+        lines.append(line)
+
+    os.makedirs(alias_dir, exist_ok=True)
+
+    # Save to a batch file
+    alias_path = os.path.join(alias_dir, f"{alias_name}.bat")
+    with open(alias_path, "w") as f:
+        f.write("@echo off\n")
+        f.write("\n".join(lines))  # Write multiline command
+
+    print(f'{Fore.GREEN}Alias "{alias_name}" created successfully!{Style.RESET_ALL}')
+    print(
+        Fore.YELLOW + "If this is your first time creating an alias, add the folder to your PATH environment variable.")
 
 
 # Command to get all aliases
